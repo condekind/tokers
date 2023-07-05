@@ -1,11 +1,15 @@
 
-# Local files
+# Local files, archive, tmp, etc
 /tmp
 /tmp.d
 /archive
 
-# Generated files
+# Save files
+*.sav
+
+# Generated/intermediate files
 *.gen.rs
+/assets/gif/*.mp4
 
 
 ## -- Github .gitignore -- ##

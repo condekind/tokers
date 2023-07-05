@@ -59,6 +59,13 @@ fn main() {
     let stdin = stdin();
     let mut stdout = stdout().into_raw_mode().unwrap();
 
+    // Currently, World::new() parses info from a world file at runtime to fill
+    // a grid with appropriate Tiles. The grid, however, has its dimensions
+    // known at compile time, since both NUM_GRID_COLS and NUM_GRID_ROWS are
+    // obtained in build.rs, which also parses the same world/map file.
+    // We could do everything in comptime (build.rs), but just having the
+    // dimensions known (for stack allocation) will do for now. What was done
+    // is probably a bad idea already - codegen is very cool but also cursed.
     let world = World::new();
     let mut player = load_player();
 
@@ -88,9 +95,16 @@ fn main() {
             }
             _ => (),
         }
+
+        // Draws the world grid according to the kind of tile at each position
         draw_world(&mut stdout, &(world.grid));
+
+        // Draws the player character at their position
         draw_player(&mut stdout, &player);
+
+        // Move cursor to (0,0)
         write!(stdout, "\x1b[0;0H").unwrap();
+
         stdout.flush().unwrap();
     }
 
