@@ -12,7 +12,15 @@ git clone git@github.com:condekind/tokers.git && cd tokers
 cargo run
 ```
 
-Sample:
+__After `cargo run`, press one of the keys (`WASD`) to start__
+
+```
+controls:
+     W(↑)           Q(quit)
+A(←) S(↓) D(→)
+```
+
+## Sample:
 
 ![ascii rendering of a top-down view of the player walking around a simple maze](assets/gif/demo_00.gif)
 
